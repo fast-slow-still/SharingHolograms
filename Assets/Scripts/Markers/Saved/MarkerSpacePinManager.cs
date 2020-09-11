@@ -14,7 +14,7 @@ public class MarkerSpacePinManager : AMarkerManager
     internal static int index = 0;
 
     private PositionMarkerHelper _positionMarkerHelper;
-    private SpacePin _spacePin = null;
+    private SpacePinOrientable _spacePin = null;
     private Coroutine m_myCoroutineRef;
     private float _sizeMeters = 1.0f;
     private MarkersSpacePinsManager _myManager;
@@ -58,8 +58,8 @@ public class MarkerSpacePinManager : AMarkerManager
             _coordinateSystem = new QRSpatialCoord();
         }
 
-        _spacePin = VirtualMarker.gameObject.AddComponent<SpacePin>();
-        //  _spacePin.Orienter = orienter;
+        _spacePin = VirtualMarker.gameObject.AddComponent<SpacePinOrientable>();
+        _spacePin.Orienter = _myManager.MyOrienter;
         _spacePin.ResetModelingPose();
         ShowHighlightProxy(false);
     }
@@ -146,6 +146,7 @@ public class MarkerSpacePinManager : AMarkerManager
 
     private bool NeedCommit(Pose lockedPose)
     {
+        if (!IsSpacePinActive()) return true;
         float RefreshThreshold = 0.01f; // one cm?
         float distance = Vector3.Distance(lockedPose.position, _lastLockedPose.position);
         if (distance > RefreshThreshold)

@@ -12,6 +12,10 @@ public class MarkersSpacePinsManager : AMarkersManager // TODO : refactoriser, p
     public GameObject SceneToShow;
     public GameObject MarkersParent;
     public AlignSubtree MyAlignSubtree;
+    /// <summary>
+    /// Shared Orienter to compute rotations implied by relative positions.
+    /// </summary>
+    public Orienter MyOrienter;
 
     public PositionMarkerHelper MyPositionMarkerHelper;
 
@@ -207,7 +211,7 @@ public class MarkersSpacePinsManager : AMarkersManager // TODO : refactoriser, p
             markerInList.UpdateByJSON(markerData);
         }
         SetUpAlignSubTree();
-        ResetAllMarkers(); // TODO : remove it ?
+        //ResetAllMarkers(); // TODO : remove it ? fast-slow-still - yes.
     }
 
     #endregion
