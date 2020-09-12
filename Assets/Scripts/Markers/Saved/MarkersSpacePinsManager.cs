@@ -13,10 +13,6 @@ public class MarkersSpacePinsManager : AMarkersManager // TODO : refactoriser, p
     public GameObject SceneToShow;
     public GameObject MarkersParent;
     public AlignSubtree MyAlignSubtree;
-    /// <summary>
-    /// Shared Orienter to compute rotations implied by relative positions.
-    /// </summary>
-    public Orienter MyOrienter;
 
     public PositionMarkerHelper MyPositionMarkerHelper;
 
